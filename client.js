@@ -212,6 +212,7 @@ function addMessage (from, text, time, _class) {
   var messageElement = $(document.createElement("table"));
 
   messageElement.addClass("message");
+  
   if (_class)
     messageElement.addClass(_class);
 
@@ -338,11 +339,13 @@ function longPoll (data) {
 }
 
 //submit a new message to the server
-function send(msg) {
+function send(msg, eom) {
   if (CONFIG.debug === false) {
     // XXX should be POST
     // XXX should add to messages immediately
-    jQuery.get("/send", {id: CONFIG.id, text: msg}, function (data) { }, "json");
+    jQuery.get("/send", 
+               {id: CONFIG.id, text: msg, endOfMessage: eom}, 
+               function (data) { }, "json");
   }
 }
 
@@ -437,14 +440,15 @@ $(document).ready(function() {
 
   //submit new messages when the user hits enter if the message isnt blank
   $("#entry").keypress(function (e) {
-    if (e.keyCode != 13 /* Return */) {
-      //var msg = $("#entry").attr("value").replace("\n", "");
-      //if (!util.isBlank(msg)) send(msg);
-      return;
-    } else {
+    if (e.keyCode != 13 ) { // Any other key
+      var msg = $("#entry").attr("value").replace("\n", "");
+      if (!util.isBlank(msg)) 
+        send(msg, false);
+      
+    } else { // Enter key is pressed
       var msg = $("#entry").attr("value").replace("\n", "");
       if (!util.isBlank(msg))
-        send(msg);
+        send(msg, true);
       $("#entry").attr("value", ""); // clear the entry field.
     }
   });
