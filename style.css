@@ -142,19 +142,29 @@ a:hover { text-decoration: underline; color: #aaa; }
 
 #log {
   /* enough padding to clear the toolbar.. is there a better way to do this? */
-  	display: block;
-  	overflow: hidden;
-	-moz-border-radius:10px;
-	-khtml-border-radius:10px;
-	-webkit-border-radius:10px;
+  display: block;
+  overflow-y: scroll;
 	border-radius: 10px;
-	background: #AE81E1;
-	border: 0px;	
-	padding-top: 25px;
-	padding-bottom: 25px;
-	width: 90%;
-	height: 75%;
-	margin-left: 50px;
+  background: transparent;
+	border: 0px;
+	width: 98%;
+	height: 98%;
+
+}
+#purpleBackground {
+  /* enough padding to clear the toolbar.. is there a better way to do this? */
+    display: block;
+  -moz-border-radius:10px;
+  -khtml-border-radius:10px;
+  -webkit-border-radius:10px;
+  border-radius: 10px;
+  background: #AE81E1;
+  border: 0px;  
+  padding-top: 25px;
+  padding-bottom: 25px;
+  width: 90%;
+  height: 75%;
+  margin-left: 50px;
 }
 
 /* not very important info */
