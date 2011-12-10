@@ -435,10 +435,16 @@ $(document).ready(function() {
 
   //submit new messages when the user hits enter if the message isnt blank
   $("#entry").keypress(function (e) {
-    if (e.keyCode != 13 /* Return */) return;
-    var msg = $("#entry").attr("value").replace("\n", "");
-    if (!util.isBlank(msg)) send(msg);
-    $("#entry").attr("value", ""); // clear the entry field.
+    if (e.keyCode != 13 /* Return */) {
+      //var msg = $("#entry").attr("value").replace("\n", "");
+      //if (!util.isBlank(msg)) send(msg);
+      return;
+    } else {
+      var msg = $("#entry").attr("value").replace("\n", "");
+      if (!util.isBlank(msg))
+        send(msg);
+      $("#entry").attr("value", ""); // clear the entry field.
+    }
   });
 
   $("#usersLink").click(outputUsers);
@@ -491,7 +497,7 @@ $(document).ready(function() {
   }
 
   // remove fixtures
-  $("#log table").remove();
+  //$("#log table").remove();
 
   //begin listening for updates right away
   //interestingly, we don't need to join a room to get its updates
