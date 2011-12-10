@@ -81,6 +81,11 @@ table {
   border-spacing: 0
 }
 
+header{
+  color: #A6E22E;
+  margin- left:50px;
+}
+
 
 a { text-decoration: none; color: #888; }
 a:hover { text-decoration: underline; color: #aaa; }
@@ -151,6 +156,7 @@ a:hover { text-decoration: underline; color: #aaa; }
 	height: 98%;
 
 }
+
 #purpleBackground {
   /* enough padding to clear the toolbar.. is there a better way to do this? */
     display: block;

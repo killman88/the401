@@ -183,7 +183,9 @@ util = {
 
 //used to keep the most recent messages visible
 function scrollDown () {
-  window.scrollBy(0, 100000000000000000);
+  //window.scrollBy(0, 100000000000000000);
+  var position = $("#log").attr("scrollHeight") - $('#log').height();
+  $("#log").animate({ scrollTop: position }, 3000);
   $("#entry").focus();
 }
 
@@ -373,9 +375,9 @@ function showChat (nick) {
 //we want to show a count of unread messages when the window does not have focus
 function updateTitle(){
   if (CONFIG.unread) {
-    document.title = "(" + CONFIG.unread.toString() + ") node chat";
+    document.title = "(" + CONFIG.unread.toString() + ") The 401";
   } else {
-    document.title = "node chat";
+    document.title = "The 401";
   }
 }
 
