@@ -83,7 +83,9 @@ table {
 
 header{
   color: #A6E22E;
-  margin- left:50px;
+  margin-left: 250px;
+  margin-bottom: 25px;
+  font-family: helvetica;
 }
 
 
@@ -223,11 +225,12 @@ form {
   border-radius:10px;
   background: #66D9EF;
   border:0px;
+  font-family: helvetica;
 }
 
 input[type=text], input[type=password] {
 	display: block;
-	margin: 0 0 1em 0;
+	margin: 10px 0 1em 0;
 	width: 400px;
 	border: 5px;
 	-moz-border-radius: 3px;
