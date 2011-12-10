@@ -226,6 +226,7 @@ form {
   background: #66D9EF;
   border:0px;
   font-family: helvetica;
+  z-index: -1;
 }
 
 input[type=text], input[type=password] {
@@ -270,6 +271,7 @@ label {
 }
 
 #logo {
-	min-height: 20px;
-	color: #FD971F;
+	margin-left: 650px;
+  margin-top: 50px;
+  z-index: 0;
 }
