@@ -201,7 +201,7 @@ function scrollDown () {
 //_class is a css class to apply to the message, usefull for system events
 function addMessage (from, text, time, _class) {
   if (text === null)
-    return;
+    text = "";
 
   if (time == null) {
     // if the time is null or undefined, use the current time.
@@ -253,7 +253,7 @@ function addMessage (from, text, time, _class) {
 function updateMessage (from, text, time, _class) {
 
   if (text === null)
-    return;
+    text = "";
 
   if (time == null) {
     // if the time is null or undefined, use the current time.
@@ -280,12 +280,11 @@ function updateMessage (from, text, time, _class) {
 
         return false;
       }
-
-      console.log(index + "Nick: " + $(message[1]).text());
+      //console.log(index + "Nick: " + $(message[1]).text());
   });
   //always view the most recent message when it is added
   scrollDown();
-  console.log("END LOOP");
+  //console.log("END LOOP");
 }
 
 
@@ -342,7 +341,10 @@ function longPoll (data) {
           if(!CONFIG.focus){
             CONFIG.unread++;
           }
-          addMessage(message.nick, message.text, message.timestamp);
+          if (util.isBlank(message.text))
+            addMessage(message.nick, message.text, message.timestamp);
+          else
+            updateMessage(message.nick, message.text, message.timestamp);
           break;
 
         case "join":
@@ -494,6 +496,9 @@ $(document).ready(function() {
       var msg = $("#entry").attr("value").replace("\n", "");
       if (!util.isBlank(msg)) 
         send(msg, false);
+      else {
+          send(" ", true);
+      }
       
     } else { // Enter key is pressed
       var msg = $("#entry").attr("value").replace("\n", "");
