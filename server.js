@@ -123,9 +123,13 @@ setInterval(function () {
 fu.listen(Number(process.env.PORT || PORT), HOST);
 
 fu.get("/", fu.staticHandler("index.html"));
-fu.get("/style.css", fu.staticHandler("style.css"));
+fu.get("/css/style.css", fu.staticHandler("css/style.css"));
+fu.get("/css/overlay.css", fu.staticHandler("css/overlay.css"));
 fu.get("/client.js", fu.staticHandler("client.js"));
 fu.get("/jquery-1.2.6.min.js", fu.staticHandler("jquery-1.2.6.min.js"));
+fu.get("/js/jquery.bazinga.overlay.js", fu.staticHandler("js/jquery.bazinga.overlay.js"));
+
+
 
 
 fu.get("/who", function (req, res) {
