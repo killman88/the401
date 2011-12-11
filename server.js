@@ -1,6 +1,12 @@
 HOST = null; // localhost
 PORT = 8001;
 
+  //does the argument only contain whitespace?
+  function isBlank(text) {
+    var blank = /^\s*$/;
+    return (text.match(blank) !== null);
+  }
+
 // when the daemon started
 var starttime = (new Date()).getTime();
 
@@ -32,7 +38,7 @@ var channel = new function () {
 
     switch (type) {
       case "char":
-        sys.puts("updating last message by " + nick + " to " + text);
+        //sys.puts("updating last message by " + nick + " to " + text);
         break;
       case "msg":
         sys.puts("<" + nick + "> " + text);
@@ -48,6 +54,7 @@ var channel = new function () {
     if (type !== "char")
       messages.push( m );
     else {
+      //if (type === "char") {
 
       for (i = messages.length - 1; i >= 0; i--) {
         if (messages[i].nick === m.nick) {
