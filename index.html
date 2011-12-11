@@ -1,32 +1,51 @@
 <html>
   <head>
-    <link rel="stylesheet" href="style.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/overlay.css" type="text/css"/>
     <script src="jquery-1.2.6.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
     <script src="client.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/jquery.bazinga.overlay.js"></script>
     <title>The 401</title>
   </head>
   <body>
     <div id="app">
       <div id="connect">
-      <header> We're the Awesome Pants Crew. </header>
+        <header> We're the Awesome Pants Crew. </header>
         <form action="#">
             <label for="nick">Name</label>
-            <input id="nickInput" class="text"type="text" name="nick" value=""/>
+            <input id="nickInput" class="text" type="text" name="nick" value=""/>
             <input id="connectButton" class="button" type="submit" name="" value="Join"/>
           </fieldset>
         </form>
       </div>
+
       <div id="loading"><p>loading</p></div>
-      <div id="purpleBackground">
-        <div id="log">
+      <div id="chatArea">
+        <div id="emailTab">
+          <p class="verticalText" id="emailFriend">
+          <a href="#" data-overlay-id="theOverlay">Email</a></p>
+        </div>
+        <div id="purpleBackground">
+          <div id="log">
+          </div>
         </div>
       </div>
+      <div id="theOverlay" class="bazinga-overlay">
+            <h1>Email a Friend</h1>
+            <form action="#">
+              <label>To:</label>
+              <input class="text" type="text" name value=""/>
+              <lable>From:</label>
+              <input class="text" type="text" value=""/>
+              <lable>Message:</label>
+              <textarea></textarea>
+              <input class="button" type="submit" name="" value="Send" style="margin-top: 10px"/>
+              </fieldset>
+            </form>           
+            <a class="close-bazinga-overlay">x</a>
+      </div>
       <div id="toolbar">
-        <ul id="status">
-          <li><a id="usersLink" href="#">5 users</a></li>
-          <li>uptime: <span id="uptime">?</span></li>
-          <li>memory: <span id="rss">?</span>mb RSS</li>
-        </ul>
         <input tabindex="1" type="text" id="entry"/>
       </div>
   </body>
