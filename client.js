@@ -1,3 +1,9 @@
+// This is a really sexy jquery plugin that reverses a list
+// ----------------------------
+jQuery.fn.reverse = [].reverse;
+// ----------------------------
+
+
 var CONFIG = { debug: false
              , nick: "#"   // set in onConnect
              , id: null    // set in onConnect
@@ -212,6 +218,7 @@ function addMessage (from, text, time, _class) {
   var messageElement = $(document.createElement("table"));
 
   messageElement.addClass("message");
+  messageElement.attr('id', $("#log").children().length);
   if (_class)
     messageElement.addClass(_class);
 
@@ -240,6 +247,47 @@ function addMessage (from, text, time, _class) {
   //always view the most recent message when it is added
   scrollDown();
 }
+
+// replaces the latest message sent by user "from"
+// with a new message.
+function updateMessage (from, text, time, _class) {
+
+  if (text === null)
+    return;
+
+  if (time == null) {
+    // if the time is null or undefined, use the current time.
+    time = new Date();
+  } else if ((time instanceof Date) === false) {
+    // if it's a timestamp, interpret it
+    time = new Date(time);
+  }
+
+
+  $("#log table tr").reverse().each(function(index) {
+      //alert($(this).text());
+      var message = $(this).children("td");
+
+      if ($(message[1]).text() === from) {
+        
+       var content = '<tr>'
+              + '  <td class="date">' + util.timeString(time) + '</td>'
+              + '  <td class="nick">' + util.toStaticHTML(from) + '</td>'
+              + '  <td class="msg-text">' + text  + '</td>'
+              + '</tr>'
+              ;
+        $(this).html(content);
+
+        return false;
+      }
+
+      console.log(index + "Nick: " + $(message[1]).text());
+  });
+  //always view the most recent message when it is added
+  scrollDown();
+  console.log("END LOOP");
+}
+
 
 function updateRSS () {
   var bytes = parseInt(rss);
@@ -287,6 +335,9 @@ function longPoll (data) {
 
       //dispatch new messages to their appropriate handlers
       switch (message.type) {
+        case "char":
+          updateMessage(message.nick, message.text, message.timestamp);
+          break;
         case "msg":
           if(!CONFIG.focus){
             CONFIG.unread++;
@@ -338,11 +389,13 @@ function longPoll (data) {
 }
 
 //submit a new message to the server
-function send(msg) {
+function send(msg, eom) {
   if (CONFIG.debug === false) {
     // XXX should be POST
     // XXX should add to messages immediately
-    jQuery.get("/send", {id: CONFIG.id, text: msg}, function (data) { }, "json");
+    jQuery.get("/send", 
+               {id: CONFIG.id, text: msg, endOfMessage: eom}, 
+               function (data) { }, "json");
   }
 }
 
@@ -437,14 +490,15 @@ $(document).ready(function() {
 
   //submit new messages when the user hits enter if the message isnt blank
   $("#entry").keypress(function (e) {
-    if (e.keyCode != 13 /* Return */) {
-      //var msg = $("#entry").attr("value").replace("\n", "");
-      //if (!util.isBlank(msg)) send(msg);
-      return;
-    } else {
+    if (e.keyCode != 13 ) { // Any other key
+      var msg = $("#entry").attr("value").replace("\n", "");
+      if (!util.isBlank(msg)) 
+        send(msg, false);
+      
+    } else { // Enter key is pressed
       var msg = $("#entry").attr("value").replace("\n", "");
       if (!util.isBlank(msg))
-        send(msg);
+        send(msg, true);
       $("#entry").attr("value", ""); // clear the entry field.
     }
   });

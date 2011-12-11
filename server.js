@@ -31,6 +31,9 @@ var channel = new function () {
             };
 
     switch (type) {
+      case "char":
+        sys.puts("updating last message by " + nick + " to " + text);
+        break;
       case "msg":
         sys.puts("<" + nick + "> " + text);
         break;
@@ -42,7 +45,19 @@ var channel = new function () {
         break;
     }
 
-    messages.push( m );
+    if (type !== "char")
+      messages.push( m );
+    else {
+
+      for (i = messages.length - 1; i >= 0; i--) {
+        if (messages[i].nick === m.nick) {
+          messages[i] = m;
+          break;
+        }
+        messages.push( m );
+      }
+        
+    }
 
     while (callbacks.length > 0) {
       callbacks.shift().callback([m]);
@@ -193,8 +208,9 @@ fu.get("/recv", function (req, res) {
 });
 
 fu.get("/send", function (req, res) {
-  var id = qs.parse(url.parse(req.url).query).id;
+  var id   = qs.parse(url.parse(req.url).query).id;
   var text = qs.parse(url.parse(req.url).query).text;
+  var eom  = qs.parse(url.parse(req.url).query).endOfMessage;
 
   var session = sessions[id];
   if (!session || !text) {
@@ -204,6 +220,11 @@ fu.get("/send", function (req, res) {
 
   session.poke();
 
-  channel.appendMessage(session.nick, "msg", text);
+  if (eom === "true") {
+    channel.appendMessage(session.nick, "msg", text);
+  } else {
+    channel.appendMessage(session.nick, "char", text);
+  }
+  
   res.simpleJSON(200, { rss: mem.rss });
 });
