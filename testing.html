@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Overlay Demo</title>
+
+        <link rel="stylesheet" href="css/overlay.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.bazinga.overlay.js"></script>
+
+        <style type="text/css">
+                body { 
+                    font-family: "Arial", sans-serif;
+                }
+                .testLink { 
+                    display:block;
+                    margin-top: 100px;
+                    text-align: center;
+                    font-size: 70px;
+                    color: #f660ab;
+                    text-decoration: none;
+                }
+                .testLink:hover {
+                    color: #ccc;
+                }
+        </style>
+
+    </head>
+    <body>
+
+        <!-- HTML5 Custom Attributes!!!!!!! Amazing. -->
+        <!-- http://ejohn.org/blog/html-5-data-attributes/ -->
+        <a href="#" class="testLink" data-overlay-id="theOverlay">
+                Click me!
+        </a>
+
+        <a href="#" class="testLink" data-overlay-id="theOverlay2">
+                Click me too!
+        </a>
+
+        <div id="theOverlay" class="bazinga-overlay">
+            <h1>Javascript: The Good Parts</h1>
+            <img src="http://covers.oreilly.com/images/9780596517748/lrg.jpg" />
+            <p>Only 19.99!</p>
+            <a class="close-bazinga-overlay">x</a>
+        </div>
+
+        <div id="theOverlay2" class="bazinga-overlay">
+            <h1>BAZINGA!!!!</h1>
+            <p>How do you like them apples?</p>
+            <a class="close-bazinga-overlay">x</a>
+        </div>
+
+
+    </body>
+</html>
