@@ -568,6 +568,30 @@ $(document).ready(function() {
   showConnect();
 });
 
+// Try sending an email to 
+$("#emailButton").click(function () {
+  showLoad();
+  var to   = $("#toInput").attr("value");
+  var from = $("#fromInput").attr("value");
+  var body = $("#bodyInput").attr("value");
+
+  // validate
+
+  // make ajax request
+  $.ajax({ cache: false
+      , type: "GET" // XXX should be POST
+      , dataType: "json"
+      , url: "/mail"
+      , data: { sender: to, receiver: from, message: body }
+      , error: function () {
+         alert("error connecting to server");
+         //showConnect();
+        }
+      , success: alert("message sent!")
+  });
+  return false;
+});
+
 //if we can, notify the server that we're going away.
 $(window).unload(function () {
   jQuery.get("/part", {id: CONFIG.id}, function (data) { }, "json");
