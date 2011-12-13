@@ -1,3 +1,9 @@
+/*
+Stylesheet for main chat application
+Jessica Legner . Dylan Swartz . Michael Louks
+CS 401
+*/
+
 /* =============================================================================
    Forms
    ========================================================================== */
@@ -57,7 +63,74 @@ textarea { overflow: auto; vertical-align: top; }
 /* Colors for form validity */
 input:valid, textarea:valid {  }
 input:invalid, textarea:invalid { background-color: #f0dddd; }
-/*mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm*/
+
+/***********************
+User Defined
+************************/
+
+/* General form style */
+form {
+  width: 440px;
+  padding:50px 50px;
+  font-weight:normal;
+  -moz-border-radius:10px;
+  -khtml-border-radius:10px;
+  -webkit-border-radius:10px;
+  border-radius:10px;
+  background: #66D9EF;
+  border:0px;
+  font-family: helvetica;
+}
+
+/* general style for text and password inputs rounds the edges */
+input[type=text], input[type=password] {
+  display: inline;
+  margin: 10px 0 1em 0;
+  width: 400px;
+  border: 5px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius:3px;
+  padding: 10px;
+}
+
+/* general style for submit button */
+input[type=submit], form a{
+  border: none;
+  margin-right: 1em;
+  padding: 6px;
+  text-decoration: none;
+  font-size: 16px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  background: #AE81E1;
+  color: #FFFFFF;
+  -moz-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+  -webkit-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+    box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+}
+
+/* hovering over submit makes it change color */
+input[type=submit]:hover, form a:hover {
+  background: #FFFFFF;
+  color: #A6E22E;
+  cursor: pointer;
+}
+
+/* lables to white */
+label {
+    color: #fff;
+}
+
+/* style for the overlay form*/
+.submit input {
+  float: right;
+  margin-right: 12px;
+  color: #777;
+}
+
+/* =============================================================================
+   Main
+   ========================================================================== */
 
 body, #entry {
   background: #22252a;
@@ -65,7 +138,7 @@ body, #entry {
 }
 
 body, table {
-  font-family: DejaVu Sans Mono, fixed; 
+  font-family: helvetica, arial, sans-serif fixed; 
   font-size: 14pt;
   line-height: 150%;
 }
@@ -85,7 +158,7 @@ header{
   color: #A6E22E;
   margin-left: 250px;
   margin-bottom: 25px;
-  font-family: helvetica;
+  font-family: helvetica, arial, sans-serif;
 }
 
 
@@ -105,14 +178,13 @@ a:hover { text-decoration: underline; color: #aaa; }
 #loading { z-index: 10000000; }
 #connect { z-index: 10000001; }
 
-
-
 #loading p, #connect fieldset  {
-	font-family: Georgia, "Times New Roman", Times, serif;
+	font-family: helvetica, arial, sans-serif;
 	width: 30em;
 	border: 0;
 }
 
+/* green background area where status is displayed and text is entered */
 #toolbar {
   	position: fixed;
   	color: #fff;
@@ -131,6 +203,7 @@ a:hover { text-decoration: underline; color: #aaa; }
   margin-bottom: 50px;
 }
 
+/* where text is entered */
 #entry {
   	width: 94%;
   	font-size: inherit;
@@ -148,6 +221,7 @@ a:hover { text-decoration: underline; color: #aaa; }
 	border:0px;	
 }
 
+/* area where messages show up */
 #log {
   /* enough padding to clear the toolbar.. is there a better way to do this? */
   display: block;
@@ -160,6 +234,7 @@ a:hover { text-decoration: underline; color: #aaa; }
 	height: 98%;
 }
 
+/* purple background for log area */
 #purpleBackground {
   display: block;
   -moz-border-radius:10px;
@@ -176,10 +251,12 @@ a:hover { text-decoration: underline; color: #aaa; }
   margin-top: 50px;
 }
 
+/* chat area, to include the email button */
 #chatArea{
   width: 895px;
 }
 
+/* right tab to bring up email overlay */
 #emailTab{
   float: right;
   background-color: #66D9EF;
@@ -190,6 +267,21 @@ a:hover { text-decoration: underline; color: #aaa; }
   width: 40px;
   height: 140px;
   margin-top: 50px;
+}
+
+/* make text vertical */
+.verticalText{
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  font-family: helvetica, arial, sans-serif;
+  font-size: 16px;
+  margin-top: 50px;
+  color: #ffffff;
+}
+
+.verticalText a, a:hover, a:visited{
+  color: #ffffff;
+  text-decoration: none;
 }
 
 /* not very important info */
@@ -232,65 +324,16 @@ a:hover { text-decoration: underline; color: #aaa; }
   color: inherit;
 }
 
-form {
-  width: 440px;
-  padding:50px 50px;
-  font-weight:normal;
-  -moz-border-radius:10px;
-  -khtml-border-radius:10px;
-  -webkit-border-radius:10px;
-  border-radius:10px;
-  background: #66D9EF;
-  border:0px;
-  font-family: helvetica;
-}
-
-input[type=text], input[type=password] {
-	display: inline;
-	margin: 10px 0 1em 0;
-	width: 400px;
-	border: 5px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius:3px;
-	padding: 10px;
-}
-
-input[type=submit], form a{
-	border: none;
-	margin-right: 1em;
-	padding: 6px;
-	text-decoration: none;
-	font-size: 16px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	background: #AE81E1;
-	color: #FFFFFF;
-	-moz-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
-  -webkit-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
-  	box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
-}
-
-input[type=submit]:hover, form a:hover {
-	background: #FFFFFF;
-	color: #A6E22E;
-	cursor: pointer;
-}
-
-label {
-    color: #fff;
-}
-
-.submit input {
-  float: right;
-  margin-right: 12px;
-  color: #777;
-}
 
 #logo {
 	margin-left: 650px;
   margin-top: 50px;
   z-index: 0;
 }
+
+/* =============================================================================
+   Scrollbar
+   ========================================================================== */
 
 ::-webkit-scrollbar {
     width: 12px;
@@ -312,16 +355,3 @@ label {
 ::-webkit-scrollbar-thumb:window-inactive {
   background: rgba(255,0,0,0.4); 
 }
-  .verticalText{
-    -webkit-transform: rotate(90deg);
-    -moz-transform: rotate(90deg);
-    font-family: helvetica;
-    font-size: 16px;
-    margin-top: 50px;
-    color: #ffffff;
-  }
-
-  .verticalText a, a:hover, a:visited{
-    color: #ffffff;
-    text-decoration: none;
-  }
