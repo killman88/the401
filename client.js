@@ -416,6 +416,16 @@ function showLoad () {
   $("#toolbar").hide();
 }
 
+function showEmailLoad() {
+  $("#emailLoaded").hide();
+  $("#emailLoading").show();
+}
+
+function showEmailLoaded() {
+  $("#emailLoaded").show();
+  $("#emailLoading").hide();
+}
+
 //transition the page to the main chat view, putting the cursor in the textfield
 function showChat (nick) {
   $("#toolbar").show();
@@ -545,6 +555,37 @@ $(document).ready(function() {
     return false;
   });
 
+  // Try sending an email to 
+  $("#emailButton").click(function () {
+    showEmailLoad();
+    console.log("BUTTON PRESSED");
+    //showLoad();
+    var to   = $("#toInput").attr("value");
+    var from = $("#fromInput").attr("value");
+    var body = $("#bodyInput").attr("value");
+
+    // validate
+
+    // make ajax request
+    $.ajax({ cache: false
+        , type: "GET" // XXX should be POST
+        , dataType: "json"
+        , url: "/mail"
+        , data: { sender: to, receiver: from, message: body }
+        , error: function () {
+           console.log("error connecting to server");
+           //showConnect();
+           //showEmailLoaded();
+          }
+        , success: function () {
+            showEmailLoaded();
+            console.log("Sent that suckkka");
+            $("#theOverlay").trigger('bazingaOverlay:close');
+        }
+    });
+    return false;
+  });
+
   // update the daemon uptime every 10 seconds
   setInterval(function () {
     updateUptime();
@@ -566,30 +607,6 @@ $(document).ready(function() {
   longPoll();
 
   showConnect();
-});
-
-// Try sending an email to 
-$("#emailButton").click(function () {
-  showLoad();
-  var to   = $("#toInput").attr("value");
-  var from = $("#fromInput").attr("value");
-  var body = $("#bodyInput").attr("value");
-
-  // validate
-
-  // make ajax request
-  $.ajax({ cache: false
-      , type: "GET" // XXX should be POST
-      , dataType: "json"
-      , url: "/mail"
-      , data: { sender: to, receiver: from, message: body }
-      , error: function () {
-         alert("error connecting to server");
-         //showConnect();
-        }
-      , success: alert("message sent!")
-  });
-  return false;
 });
 
 //if we can, notify the server that we're going away.

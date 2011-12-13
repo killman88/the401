@@ -239,3 +239,12 @@ fu.get("/send", function (req, res) {
   
   res.simpleJSON(200, { rss: mem.rss });
 });
+
+fu.get("/mail", function (req, res) {
+    var sender   = qs.parse(url.parse(req.url).query).sender;
+    var receiver = qs.parse(url.parse(req.url).query).receiver;
+    var message  = qs.parse(url.parse(req.url).query).message;
+
+    fu.mail({to: receiver, from: sender, msg: message});
+
+});
