@@ -579,6 +579,7 @@ $(document).ready(function() {
             showEmailLoaded();
             console.log("Sent that suckkka");
             $("#theOverlay").trigger('bazingaOverlay:close');
+            $("#loading").hide();
         }
     });
     return false;
