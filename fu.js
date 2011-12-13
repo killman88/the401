@@ -18,8 +18,8 @@ nodemailer.SMTP = {
     pass: 'the401402the'
 }
 
-fu.mail = function(data) {
-  nodemailer.send_mail(
+fu.mail = function(data) { 
+    return nodemailer.send_mail(
     // e-mail options
     {
         sender: data.from,
@@ -30,7 +30,8 @@ fu.mail = function(data) {
     },
     // callback function
     function(error, success){
-        sys.puts('Message ' + success ? 'sent ' + data.to : 'failed');
+        //sys.puts('Message ' + success ? 'sent ' + data.to : 'failed');
+        return success ? true : false;
     });
 }
 

@@ -247,4 +247,6 @@ fu.get("/mail", function (req, res) {
 
     fu.mail({to: receiver, from: sender, msg: message});
 
+    res.simpleJSON(200, {success: "It worked!"});
+
 });
