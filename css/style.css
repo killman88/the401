@@ -79,7 +79,7 @@ form {
   border-radius:10px;
   background: #66D9EF;
   border:0px;
-  font-family: helvetica;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 /* general style for text and password inputs rounds the edges */
@@ -138,7 +138,7 @@ body, #entry {
 }
 
 body, table {
-  font-family: helvetica, arial, sans-serif fixed; 
+  font-family: Helvetica, Arial, sans-serif fixed; 
   font-size: 14pt;
   line-height: 150%;
 }
@@ -155,10 +155,12 @@ table {
 }
 
 header{
+  font-size: 2em;
+  font-weight: bold;
   color: #A6E22E;
   margin-left: 250px;
   margin-bottom: 25px;
-  font-family: helvetica, arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 
@@ -179,7 +181,7 @@ a:hover { text-decoration: underline; color: #aaa; }
 #connect { z-index: 10000001; }
 
 #loading p, #connect fieldset  {
-	font-family: helvetica, arial, sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 	width: 30em;
 	border: 0;
 }
@@ -273,7 +275,7 @@ a:hover { text-decoration: underline; color: #aaa; }
 .verticalText{
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
-  font-family: helvetica, arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-size: 16px;
   margin-top: 50px;
   color: #ffffff;
