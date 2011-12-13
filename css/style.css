@@ -155,6 +155,8 @@ table {
 }
 
 header{
+  font-size: 2em;
+  font-weight: bold;
   color: #A6E22E;
   margin-left: 250px;
   margin-bottom: 25px;
