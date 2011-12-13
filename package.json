@@ -4,6 +4,7 @@
   "author": "Dylan Swartz (Jesscia Legner and Michael Louks)",
   "version": "0.0.1",
   "dependencies": {
-    "express":""  
-  }
+    "express":"",  
+    "nodemailer":"" 
+ }
 }
