@@ -1,4 +1,11 @@
-Demo for node.js http://tinyclouds.org/node
+Dylan Swartz
+Jessica Legner
+Michael Louks
+
+CS401 Capstone Project
 
 to run
 $ /usr/local/bin/node server.js
+
+to view
+http://localhost:8001
