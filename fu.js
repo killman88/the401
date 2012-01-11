@@ -2,11 +2,38 @@ var createServer = require("http").createServer;
 var readFile = require("fs").readFile;
 var sys = require("sys");
 var url = require("url");
+var nodemailer = require('nodemailer');
+
 DEBUG = false;
 
 var fu = exports;
 
 var NOT_FOUND = "Not Found\n";
+
+nodemailer.SMTP = {
+    host: 'smtp.gmail.com',
+    //port: 25, // optional, defaults to 25 or 465
+    use_authentication: true,
+    user: 'awesomepantscrew@gmail.com', 
+    pass: 'the401402the'
+}
+
+fu.mail = function(data) { 
+    return nodemailer.send_mail(
+    // e-mail options
+    {
+        sender: data.from,
+        to: data.to,
+        subject:'the401 Mail',
+        html: '<p>'+data.msg+'</p>',
+        body: data.msg
+    },
+    // callback function
+    function(error, success){
+        //sys.puts('Message ' + success ? 'sent ' + data.to : 'failed');
+        return success ? true : false;
+    });
+}
 
 function notFound(req, res) {
   res.writeHead(404, { "Content-Type": "text/plain"
