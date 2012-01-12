@@ -1,8 +1,29 @@
-Dylan Swartz
-Jessica Legner
-Michael Louks
+CS401/CS402 Capstone Project
+Dylan Swartz, Sebastien Pic, Jessica Legner, & Michael Louks
 
-CS401 Capstone Project
+TODO
+
+
+   * Implement HTTPS
+   * Buddy System
+      * Facebook or Twitter API?
+   * Login System
+      * Hash the password, then store in databse
+      * Compare hashes when logging in
+   * Secure Email
+
+      * Encrypted
+      * Scrap the existing email system and make a new one
+   * Rethink Design
+      * Cross Browser Compatibility
+      * Possibly use http://foundation.zurb.com
+
+
+Source:
+http://github.com/dylanswartz/the401
+
+Live Application:
+http://the401.herokuapp.com
 
 to run
 $ /usr/local/bin/node server.js
